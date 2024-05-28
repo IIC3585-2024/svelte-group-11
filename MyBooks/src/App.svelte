@@ -2,6 +2,8 @@
     import Book from './book.svelte'
 	import Button from "./button.svelte";
 	import Purchase from './purchase.svelte'
+	import BooksApi from './booksApi.svelte';
+
     let title = '';
     let price = 0;
     let description = '';
@@ -74,7 +76,8 @@
 		on:buy={purchaseBook}
 		/>
 	{/each}
-{/if}
+	{/if}
+	<BooksApi />
 </section>
 
 <section>
