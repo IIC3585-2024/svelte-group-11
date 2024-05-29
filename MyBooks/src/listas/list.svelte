@@ -1,14 +1,13 @@
 <script>
-    import Button from "./button.svelte";
+    import Button from "../button.svelte";
     import { createEventDispatcher } from "svelte";
-    export let name = 'list';
     export let listTitle;
     export let listDescription;
 
     const dispatch = createEventDispatcher();
 
-    function verBooks() {
-        dispatch("books", listTitle);
+    function verList() {
+        dispatch("lista", listTitle);
     }
 
 </script>
@@ -35,5 +34,5 @@
 <div>
     <h2> {listTitle} </h2>
     <p> {listDescription}</p>
-    <Button on:click={verBooks}>Ver</Button>
+    <Button on:click={verList}>Ver Lista</Button>
 </div>

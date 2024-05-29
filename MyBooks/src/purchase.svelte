@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
     export let books;
   
     let initialValue = 0;
@@ -34,6 +34,6 @@
         border-top: 1px dashed black;
     }
 
-</style>
+</style> -->
   
   

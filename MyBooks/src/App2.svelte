@@ -1,27 +1,24 @@
 <script>
     import Router from 'svelte-spa-router';
 
-    import BooksApi from './booksApi.svelte';
-    // import List from './list.svelte';
+    import BooksPage from './books/bookPage.svelte';
+    import Home from './home.svelte'
+    import ListsPage from './listas/listsPage.svelte';
 
     // Define your routes
     const routes = {
-        '/books': BooksApi,
-        // '/lists': List
+        '/': Home,
+        '/books': BooksPage,
+        '/lists': ListsPage
     };
 </script>
 
-<main>
+<section>
+    <Router {routes} />
     <nav>
-        <!-- <a href="#/">Home</a> -->
-        <a href="#/books">Libros</a>
-        <!-- <a href="#/lists">Listas</a> -->
+        <a href="#/">Home</a>
+        <a href="#/books">Ver Libros</a>
+        <a href="#/lists">Listas</a>
     </nav>
     
-    <Router {routes} />
-</main>
-
-<!-- <section>
-    <h1>¡Bienvenido a MyBooks!</h1>
-    <p>Aqui puedes crear diferentes listas con libros que te gusten o interesen</p>
-</section> -->
+</section>

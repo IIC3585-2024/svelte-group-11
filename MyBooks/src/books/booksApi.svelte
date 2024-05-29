@@ -1,7 +1,6 @@
 <script>
     import { onMount } from 'svelte'
     import Book from './book.svelte';
-    export let name = 'booksApi';
 
     let booksApi = []
     const url = 'https://www.googleapis.com/books/v1/volumes?q=young%adult'
