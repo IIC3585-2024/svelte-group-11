@@ -1,5 +1,5 @@
 <script>
-    import Button from "./button.svelte";
+    import Button from "../button.svelte";
     import { createEventDispatcher } from "svelte";
     export let bookTitle;
     export let bookPrice;
@@ -7,9 +7,9 @@
 
     const dispatch = createEventDispatcher();
 
-    function purchaseBook() {
-        dispatch("buy", bookTitle);
-    }
+    // function purchaseBook() {
+    //     dispatch("buy", bookTitle);
+    // }
 
 </script>
 
@@ -44,5 +44,5 @@
     <h2> {bookTitle} </h2>
     <p> {bookPrice}</p>
     <p> {bookDescription}</p>
-    <Button on:click={purchaseBook}>Buy</Button>
+    <!-- <Button on:click={purchaseBook}>Buy</Button> -->
 </div>

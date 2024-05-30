@@ -1,14 +1,15 @@
 <script>
-    import Book from './books/book.svelte'
-	import Button from "./button.svelte";
-	import Purchase from './purchase.svelte'
-	import BooksApi from './books/booksApi.svelte';
+    import Book from './book.svelte'
+	import Button from "../button.svelte";
+	// import Purchase from './purchase.svelte'
+	import BooksApi from './booksApi.svelte';
+    import { push } from 'svelte-spa-router';
 
     let title = '';
     let price = 0;
     let description = '';
-	let books =[]
-	let purchases = [];
+	let books = []
+	// let purchases = [];
 
     function setTitle(event){
         title = event.target.value;
@@ -23,12 +24,16 @@
         books = books.concat(newBook)
     }
 
-	function purchaseBook(event){
-		const selectedTitle= event.detail;
-		purchases = purchases.concat({
-			...books.find(book => book.title === selectedTitle)
-		});
-	}
+    // function goToLink(path) {
+    //     push(path);
+    // }
+
+	// function purchaseBook(event){
+	// 	const selectedTitle= event.detail;
+	// 	purchases = purchases.concat({
+	// 		...books.find(book => book.title === selectedTitle)
+	// 	});
+	// }
 
 </script>
 
@@ -45,6 +50,10 @@
     label,input,textarea{width: 100%}
 </style>
 
+<!-- <section>
+	<Button on:click={() => goToLink('/')}>Home</Button>
+</section> -->
+
 <section>
     <div> 
         <label for="title">Title</label>
@@ -59,27 +68,16 @@
         <textarea rows="3" id="description" bind:value={description}/>
     </div>
 
-	<Button on:click={addBook}>ADD Book</Button>
+	<Button on:click={addBook}>Añadir libro</Button>
 </section>
 
 <section>
-	<h2>Stock</h2>
-	{#if books.length === 0}
-		<p>
-			No books in stock.
-		</p>
-	{:else}
+	<h2>Libros Disponibles</h2>
 	{#each books as book}
 		<Book bookTitle={book.title}
 		bookPrice={book.price}
 		bookDescription={book.description}
-		on:buy={purchaseBook}
 		/>
 	{/each}
-	{/if}
 	<BooksApi />
-</section>
-
-<section>
-	<Purchase books ={purchases}  />
 </section>
