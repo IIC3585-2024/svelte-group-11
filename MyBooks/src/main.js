@@ -1,7 +1,8 @@
-import App2 from './App2.svelte';
+import App from './App.svelte';
+// import 'bulma/css/bulma.css';
 
-const app = new App2({
-	target: document.body,
+const app = new App({
+  target: document.body,
 });
 
 export default app;

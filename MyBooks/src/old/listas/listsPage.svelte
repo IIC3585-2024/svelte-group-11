@@ -1,6 +1,6 @@
 <script>
     // import Book from './book.svelte'
-	import Button from "../button.svelte";
+	import Button from "../../button.svelte";
     import { push } from 'svelte-spa-router';
     import List from './list.svelte'
 
