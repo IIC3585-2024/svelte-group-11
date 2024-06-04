@@ -6,21 +6,20 @@
     import NextBooks from './views/NextBooks.svelte';
     import FavoriteBooks from './views/FavoriteBooks.svelte';
     import AvailableBooks from './views/AvailableBooks.svelte';
-    // import 'bulma/css/bulma.css';
 </script>
 
 <Router>
 <main>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
+    <nav >
+        <div >
+            <div >
                 <Link to="/">Inicio</Link>
                 <Link to="/mybooks">Completados</Link>
                 <Link to="/recommended">Recomendados</Link>
                 <Link to="/nextbooks">Siguientes</Link>
                 <Link to="/favorites">Favoritos</Link>
             </div>
-            <div class="navbar-end">
+            <div >
                 <Link to="/availables">Disponibles</Link>
             </div>
         </div>
