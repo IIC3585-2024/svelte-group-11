@@ -48,6 +48,7 @@
       bookIsInNext = false;
       bookIsInFavorite = false;
       checkBookInLists();
+      transformBookData();
     });
   
     function transformBookData() {
@@ -80,33 +81,34 @@
       ];
     }
   
-    // function flipPage() {
-    //   if (currentPage === numPages - 1) {
-    //     showAtras = false;
-    //     showAdelante = false;
-    //     currentPage = 0;
-    //     currentNextPage = 1;
-    //     show = true;
-    //   } else {
-    //     show = false;
-    //     showAtras = true;
-    //     showAdelante = true;
-    //     if (currentPage === numPages - 1) {
-    //       showAdelante = false;
-    //       showAtras = false;
-    //     }
-    //   }
-    // }
+    function flipPage() {
+      currentPage = (currentPage + 1) % numPages;
+      if (currentPage === numPages - 1) {
+        showAtras = false;
+        showAdelante = false;
+        currentPage = 0;
+        currentNextPage = 1;
+        show = true;
+      } else {
+        show = false;
+        showAtras = true;
+        showAdelante = true;
+        if (currentPage === numPages - 1) {
+          showAdelante = false;
+          showAtras = false;
+        }
+      }
+    }
   
-    // function beforeEnter() {
-    //   currentNextPage = (currentPage + 1) % numPages;
-    // }
+    function beforeEnter(node) {
+      currentNextPage = (currentPage + 1) % numPages;
+    }
   
-    // function afterLeave() {
-    //   currentPage = (currentPage + 1) % numPages;
-    //   currentNextPage = currentPage;
-    //   show = true;
-    // }
+    function afterLeave(node) {
+      currentPage = (currentPage + 1) % numPages;
+      currentNextPage = currentPage;
+      show = true;
+    }
   
     function checkBookInLists() {
       let searched_id = bookData.id;
@@ -201,75 +203,66 @@
           <button type="button" class="back-button" on:click={() => dispatch('close')}>
             <img src="/assets/x.png" alt="Back" class="icon is-medium">
           </button>
-          <!-- {#if showAtras}
-            <div class="page" on:click={flipPage} style="transformBookData[currentPage].cover ? 'background-color: #3b2b1a; border: 0px; border-left: 5px solid #3b2b1a;' : ''"></div>
+
+          {#if showAtras}
+            <div class="page" 
+            style="background-color: {transformBookData[currentPage] && transformBookData[currentPage].cover ? '#3b2b1a' : ''}; border-left: {transformBookData[currentPage] && transformBookData[currentPage].cover ? '5px solid #3b2b1a' : '0px'};" 
+            on:click="{flipPage}"></div>
           {/if}
-          {#if currentPage !== numPages - 1}
-            <div transition:flip name="flip" on:before-enter={beforeEnter} on:after-leave={afterLeave} key={currentPage} class="page page-move" on:click={flipPage}>
-              {#if transformBookData()[currentPage].cover}
-                <img src={transformBookData()[currentPage].image} alt="Book cover" style="width: 100%; height: 100%;">
-              {:else}
-                <PageContent bookData={transformBookData()[currentPage]} />
-              {/if}
+
+          {#if show}
+            <div class="page page-move" on:click="{flipPage}">
+              <!-- <div in:flip={{ beforeEnter, afterLeave }} class="page page-move" on:click="{flipPage}"> -->
+                {#if transformBookData()[currentPage].cover}
+                  <img src="{transformBookData()[currentPage].image}" alt="Book cover" style="width: 100%; height: 100%;">
+                {:else}
+                  <PageContent bookData={transformBookData()[currentPage]}/>
+                {/if}
+              <!-- </div> -->
             </div>
           {/if}
+
           {#if showAdelante}
-            <div class="page" on:click={flipPage}>
-              <PageContent bookData={transformBookData()[currentNextPage]} />
+            <div class="page" on:click="{flipPage}">
+              <PageContent bookData={transformBookData()[currentPage]}/>
             </div>
-          {/if} -->
-          <PageContent bookData={transformBookData()} />
+          {/if}
+          <!-- <PageContent bookData={transformBookData()} /> -->
           {#if !bookIsInFavorite}
-            <div class="favorite-button">
-              <button on:click={addBookToFavorite}>
+              <button on:click={addBookToFavorite} type="button" class="favorite-button">
                 <img src="/assets/star-empty.png" alt="Favorite" class="icon is-large">
               </button>
-            </div>
           {:else}
-            <div class="favorite-button">
-              <button on:click={removeBookFromFavorite}>
+              <button on:click={removeBookFromFavorite}  class="favorite-button">
                 <img src="/assets/star.png" alt="Favorite" class="icon is-large">
               </button>
-            </div>
           {/if}
           {#if !bookIsInCompleted}
-            <div class="completed-button">
-              <button on:click={addBookToCompleted}>
+              <button on:click={addBookToCompleted} class="completed-button">
                 <img src="/assets/completed-green.png" alt="Completed" class="icon is-large">
               </button>
-            </div>
           {:else}
-            <div class="completed-button">
-              <button on:click={removeBookFromCompleted}>
+              <button on:click={removeBookFromCompleted} class="completed-button">
                 <img src="/assets/completed-red.png" alt="Completed" class="icon is-large">
               </button>
-            </div>
           {/if}
           {#if !bookIsInRecommended}
-            <div class="recommended-button">
-              <button on:click={addBookToRecommended}>
+              <button on:click={addBookToRecommended} class="recommended-button">
                 <img src="/assets/recommended-green.png" alt="Recommended" class="icon is-large">
               </button>
-            </div>
           {:else}
-            <div class="recommended-button">
-              <button on:click={removeBookFromRecommended}>
+              <button on:click={removeBookFromRecommended} class="recommended-button">
                 <img src="/assets/recommended-red.png" alt="Recommended" class="icon is-large">
               </button>
-            </div>
           {/if}
           {#if !bookIsInNext}
-            <div class="next-button">
-                <button on:click={addBookToNext}>
+                <button on:click={addBookToNext} class="next-button">
                 <img src="/assets/next-green.png" alt="Next" class="icon is-large">
                 </button>
-            </div>
           {:else}
-            <div class="next-button">
-                <button on:click={removeBookFromNext}>
+                <button on:click={removeBookFromNext} class="next-button">
                 <img src="/assets/next-red.png" alt="Next" class="icon is-large">
                 </button>
-            </div>
           {/if}
         </div>
     </div>
@@ -331,13 +324,13 @@
       margin-left: 30%;
     }
     
-    .flip-enter-active, .flip-leave-active {
+    /* .flip-enter-active, .flip-leave-active {
     transition: transform 0.8s ease-in-out;
     }
     
     .flip-enter, .flip-leave-to {
     transform: rotateY(-90deg);
-    }
+    } */
     
     .back-button {
       position: absolute;
@@ -370,6 +363,7 @@
       bottom: 15px;
       right: 80%;
       border: none;
+      background-color: #3b2b1a;
       cursor: pointer;
     }
     
@@ -378,6 +372,7 @@
       bottom: 15px;
       right: 45%;
       border: none;
+      background-color: #3b2b1a;
       cursor: pointer;
     }
     
@@ -386,6 +381,7 @@
       bottom: 15px;
       right: 15%;
       border: none;
+      background-color: #3b2b1a;
       cursor: pointer;
     }
 </style>

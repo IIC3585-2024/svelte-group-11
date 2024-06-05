@@ -69,7 +69,7 @@
               class="book-icon"
               style="background-color: {booksColor[booksPaginated()[index].id]}"
               on:click={() => showModal(index)}
-              on:keydown={(event) => handleKeyPress(event, index)}
+              on:keydown={(event) => handleKeyPress(event, index, book)}
               tabindex="0"
               role="button"
               aria-label={`Show details for ${booksPaginated()[index].volumeInfo.title}`}

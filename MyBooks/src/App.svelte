@@ -10,17 +10,17 @@
 
 <Router>
 <main>
-    <nav >
-        <div >
-            <div >
-                <Link to="/">Inicio</Link>
-                <Link to="/mybooks">Completados</Link>
-                <Link to="/recommended">Recomendados</Link>
-                <Link to="/nextbooks">Siguientes</Link>
-                <Link to="/favorites">Favoritos</Link>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+                <Link class="navbar-item" to="/">Inicio</Link>
+                <Link class="navbar-item" to="/mybooks">Completados</Link>
+                <Link class="navbar-item" to="/recommended">Recomendados</Link>
+                <Link class="navbar-item" to="/nextbooks">Siguientes</Link>
+                <Link class="navbar-item" to="/favorites">Favoritos</Link>
             </div>
-            <div >
-                <Link to="/availables">Disponibles</Link>
+            <div class="navbar-end">
+                <Link class="navbar-item" to="/availables">Disponibles</Link>
             </div>
         </div>
     </nav>

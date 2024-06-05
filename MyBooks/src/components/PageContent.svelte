@@ -1,5 +1,6 @@
 <script>
     export let bookData = {};
+    console.log("bb", bookData);
 </script>
   
 <div class="book-info">

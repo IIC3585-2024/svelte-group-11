@@ -1,22 +1,28 @@
 <script>
-    import { onMount } from 'svelte';
+    import { onMount, afterUpdate } from 'svelte';
     import ModalBook from './ModalBook.svelte';
     import { createEventDispatcher } from 'svelte';
 
     export let books = [];
     export let currentPage = 0;
     export let titlePage = '';
-
+    
+    let booksColor = {};
     let isOpen = [];
 
     onMount(() => {
         isOpen = Array(books.length).fill(false);
+        
     });
 
-    const booksColor = books.reduce((colors, book) => {
-        colors[book.id] = generateRandomColor();
-        return colors;
-    }, {});
+    afterUpdate(() => {
+      if (books.length > 0) {
+        booksColor = books.reduce((colors, book) => {
+          colors[book.id] = generateRandomColor();
+            return colors;
+        }, {});
+      }
+    });
 
     function generateRandomColor() {
         const colors = ['#F8E6A0', '#8B4513', '#8C001A', '#B8860B', '#D4A190', '#0F52BA', '#50C878', '#C04000', '#C0C0C0', '#696969'];
@@ -55,10 +61,14 @@
     <div class="grid-container">
         {#each books as book, index}
         <div class="grid-item" key={index}>
-            <div class="book-icon" style="background-color: {booksColor[book.id]}" on:click={() => showModal(index)}>
+            <div class="book-icon" 
+                style="background-color: {booksColor[book.id]}" 
+                on:click={() => showModal(index)}
+                on:keypress={(event) => handleKeyPress(event, index)}
+                >
                 <h1 class="book-title">{book.volumeInfo.title}</h1>
             </div>
-            <ModalBook open={isOpen[index]} on:close={() => closeModal(index)} {book} />
+            <ModalBook open={isOpen[index]} on:close={() => closeModal(index)} bookData={book} />
         </div>
         {/each}
     </div>
