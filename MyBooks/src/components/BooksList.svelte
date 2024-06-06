@@ -64,7 +64,6 @@
             <div class="book-icon" 
                 style="background-color: {booksColor[book.id]}" 
                 on:click={() => showModal(index)}
-                on:keypress={(event) => handleKeyPress(event, index)}
                 >
                 <h1 class="book-title">{book.volumeInfo.title}</h1>
             </div>

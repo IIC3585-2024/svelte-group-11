@@ -45,46 +45,46 @@
 </script>
   
 <main>
-  <div>
-    <h1>MyBooks</h1>
-    <figure>
+  <div class="column has-text-centered has-background-grey-darker">
+    <h1 class="title is-1 mt-4">MyBooks</h1>
+    <figure class="image is-128x128 is-inline-block mb-5">
       <img src="/assets/books.png" alt="Books">
     </figure>
   </div>
   
-  <div>
-    <div >
+  <div class="columns is-mobile is-centered has-text-centered mt-5">
+    <div class="column is-half has-background-info-dark">
       <h1>Libros Completados: {completedBooks.length}</h1>
     </div>
   </div>
   
-  <div>
-    <div>
+  <div class="columns is-mobile is-centered has-text-centered mt-5">
+    <div class="column is-half has-background-info-dark">
       <h1>Libros Recomendados: {recommendedBooks.length}</h1>
     </div>
   </div>
   
-  <div>
-    <div>
+  <div class="columns is-mobile is-centered has-text-centered mt-5">
+    <div class="column is-half has-background-info-dark">
       <h1>Libros por leer: {nextBooks.length}</h1>
     </div>
   </div>
   
-  <div>
-    <div>
+  <div class="columns is-mobile is-centered has-text-centered mt-5">
+    <div class="column is-half has-background-info-dark">
       <h1>Libros Favoritos: {favoriteBooks.length}</h1>
     </div>
   </div>
   
-  <div>
-    <div>
-      <button on:click={resetBooks}>Resetear Información</button>
+  <div class="columns is-mobile is-centered has-text-centered mt-5">
+    <div class="column">
+      <button class="button is-danger" on:click={resetBooks}>Resetear Información</button>
     </div>
   </div>
 </main>
   
 <style>
     h1 {
-      color: black;
+      color: white;
     }
 </style>
