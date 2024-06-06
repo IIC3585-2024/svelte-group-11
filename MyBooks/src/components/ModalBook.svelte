@@ -19,6 +19,14 @@
     let bookIsInCompleted = false;
     let bookIsInNext = false;
     let bookIsInFavorite = false;
+
+    $: if (bookData) {
+      bookIsInCompleted = false;
+      bookIsInRecommended = false;
+      bookIsInNext = false;
+      bookIsInFavorite = false;
+      checkBookInLists();
+    }
   
     const dispatch = createEventDispatcher();
   
@@ -43,11 +51,6 @@
     });
   
     afterUpdate(() => {
-      bookIsInCompleted = false;
-      bookIsInRecommended = false;
-      bookIsInNext = false;
-      bookIsInFavorite = false;
-      checkBookInLists();
       transformBookData();
     });
   
